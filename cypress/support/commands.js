@@ -23,3 +23,15 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+// const cypress = require("cypress")
+
+Cypress.Commands.add('getApi', (urlParam) => {
+    cy.request({
+        method: 'GET',
+        url: urlParam,
+        headers: {
+            'Content-Type': 'application/json; charset=utf-8'
+        }
+    })
+})
