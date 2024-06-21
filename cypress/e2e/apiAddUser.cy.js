@@ -54,18 +54,6 @@ describe("API tests that add new users", () => {
       })
     })
 
+    //teste de contrato
+
 })
-
-
-
-
-
- 
-   
-    
-    //test do jasonSchema
-    //validar o status code
-    //validar a data de cadastrado, deve ser iqual a data de hoje
-  
-    
-    
