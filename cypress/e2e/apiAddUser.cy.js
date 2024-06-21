@@ -4,7 +4,7 @@ describe("API tests that add new users", () => {
     it('Test 1 - Validate status code 201 when adding a new user', ()=>{
       cy.request({
         method:'POST',
-        url: 'https://reqres.in/api/users',
+        url: '/users',
         body: {
             "name": "Rhaynner",
             "job": "Manager"
@@ -22,7 +22,7 @@ describe("API tests that add new users", () => {
     it('Test 2 - Add a new user by sending an empty name in the request body', ()=>{
       cy.request({
         method:'POST',
-        url: 'https://reqres.in/api/users',
+        url: '/users',
         body: {
             "name": "",
             "job": "Manager"
@@ -40,7 +40,7 @@ describe("API tests that add new users", () => {
     it('Test 3 - Add a new user by sending an empty job in the request body', ()=>{
       cy.request({
         method:'POST',
-        url: 'https://reqres.in/api/users',
+        url: '/users',
         body: {
             "name": "Rhaynner",
             "job": ""

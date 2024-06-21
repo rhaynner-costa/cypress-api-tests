@@ -4,7 +4,7 @@ describe("Testes da api de listagem", () => {
     it('Test 1 - The listing API is returning page 1', () => {
         cy.request({
             method: 'GET',
-            url: 'https://reqres.in/api/users?page=1',
+            url: '/users?page=1',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
 
@@ -24,7 +24,7 @@ describe("Testes da api de listagem", () => {
     it('Test 2 - The listing API is returning page 2', () => {
         cy.request({
             method: 'GET',
-            url: 'https://reqres.in/api/users?page=2',
+            url: '/users?page=2',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
 
@@ -46,7 +46,7 @@ describe("Testes da api de listagem", () => {
     it('Test 3 - Validate in the response if all elements of the array are returning', () => {
         cy.request({
             method: 'GET',
-            url: 'https://reqres.in/api/users?page=1',
+            url: '/users?page=1',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
 
@@ -69,7 +69,7 @@ describe("Testes da api de listagem", () => {
     it('Test 4 - The API is returning an empty listing', () => {
         cy.request({
             method: 'GET',
-            url: 'https://reqres.in/api/users?page=99',
+            url: '/users?page=99',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
 

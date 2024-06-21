@@ -5,8 +5,6 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    env: {
-      API_URL: 'https://reqres.in'
-    }
+    baseUrl: "https://reqres.in/api/", 
   },
 });
