@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "cy:open" : "cypress open",
+    "cy:open": "cypress open",
     "test": "cypress run"
   },
   "keywords": [],
@@ -11,6 +11,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "ajv": "^8.16.0",
     "cypress": "^13.12.0"
   }
 }
