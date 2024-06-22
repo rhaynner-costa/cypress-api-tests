@@ -35,3 +35,11 @@ Cypress.Commands.add('getApi', (urlParam) => {
         }
     })
 })
+
+Cypress.Commands.add('postApi', (urlParam, requestBody) => {
+    cy.request({
+        method: 'POST',
+        url: urlParam,
+        body: requestBody
+    })
+})
