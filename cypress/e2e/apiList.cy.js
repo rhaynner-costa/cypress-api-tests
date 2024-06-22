@@ -1,5 +1,8 @@
 /// <reference types="Cypress"/>
 
+import Ajv from "ajv"
+const ajv = new Ajv({ allErrors: true, verbose: true })
+
 describe("Testes da api de listagem", () => {
     it('Teste 1 - Valida o statuscode 200 da listagem na pagina 1', () => {
         cy.getApi('/users?page=1').should((response) => {
@@ -14,7 +17,7 @@ describe("Testes da api de listagem", () => {
 
     })
 
-    it('Teste e - Valida dados validos no responseBody da request', () => {
+    it('Teste 2 - Valida dados validos no responseBody da request', () => {
         cy.getApi('/users?page=2').should((response) => {
             expect(response.status).to.equal(200)
             console.log(response)
@@ -60,6 +63,22 @@ describe("Testes da api de listagem", () => {
 
     })
 
-    //teste de contrato
+    it('Teste 5 - Teste de contrato', () => {
+        cy.getApi('/users?page=1').then((response) => {
+            cy.fixture('listSchema').then((schema) => {
+                const validate = ajv.compile(schema)
+
+                const valid = validate(response.body)
+
+                if (!valid) cy.log(validate.errors).then(() => {
+                    throw new Error('Falha no contrato')
+
+                })
+
+            })
+
+        })
+
+    })
 
 })

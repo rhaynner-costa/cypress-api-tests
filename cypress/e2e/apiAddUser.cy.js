@@ -43,7 +43,7 @@ describe("API tests that add new users", () => {
 
   })
 
-  it('Test 3 - Valida a criação de um usuario com o cargo invalido', () => {
+  it('Teste 3 - Valida a criação de um usuario com o cargo invalido', () => {
 
     cy.request({
       method: 'POST',
