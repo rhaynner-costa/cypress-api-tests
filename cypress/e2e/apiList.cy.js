@@ -1,7 +1,7 @@
 /// <reference types="Cypress"/>
 
 describe("Testes da api de listagem", () => {
-    it('Test 1 - The listing API is returning page 1', () => {
+    it('Teste 1 - Valida o statuscode 200 da listagem na pagina 1', () => {
         cy.getApi('/users?page=1').should((response) => {
             expect(response.status).to.equal(200)
             expect(response.body.page).is.equal(1)
@@ -14,7 +14,7 @@ describe("Testes da api de listagem", () => {
 
     })
 
-    it('Test 2 - The listing API is returning page 2', () => {
+    it('Teste e - Valida dados validos no responseBody da request', () => {
         cy.getApi('/users?page=2').should((response) => {
             expect(response.status).to.equal(200)
             console.log(response)
@@ -29,7 +29,7 @@ describe("Testes da api de listagem", () => {
 
     })
 
-    it('Test 3 - Validate in the response if all elements of the array are returning', () => {
+    it('Teste 3 - Valida dados validos no array da listagem', () => {
         cy.getApi('/users?page=1').should((response) => {
             expect(response.status).to.equal(200)
             Cypress._.each(response.body.data, (dataUser) => {
@@ -45,7 +45,7 @@ describe("Testes da api de listagem", () => {
 
     })
 
-    it('Test 4 - The API is returning an empty listing', () => {
+    it('Teste 4 - Valida se a lista retornou vazia', () => {
         cy.getApi('/users?page=99').should((response) => {
             expect(response.status).to.equal(200)
             expect(response.body.data).is.empty

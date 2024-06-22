@@ -1,8 +1,11 @@
 /// <reference types="Cypress"/>
 
+import Ajv from "ajv"
+const ajv = new Ajv({allErrors: true, verbose:true})
+
 describe("API tests that add new users", () => {
 
-  it('Test 1 - Validate status code 201 when adding a new user', () => {
+  it('Teste 1 - Valida o status code 201 quando criado um novo usuario', () => {
 
     cy.fixture('users').then((data) => {
       const requestBody = data
@@ -20,7 +23,7 @@ describe("API tests that add new users", () => {
 
   })
 
-  it('Test 2 - Add a new user by sending an empty name in the request body', () => {
+  it('Teste 2 - Valida a criação de um usuario um nome invalido', () => {
 
     cy.request({
       method: 'POST',
@@ -40,7 +43,7 @@ describe("API tests that add new users", () => {
 
   })
 
-  it('Test 3 - Add a new user by sending an empty job in the request body', () => {
+  it('Test 3 - Valida a criação de um usuario com o cargo invalido', () => {
 
     cy.request({
       method: 'POST',
@@ -56,9 +59,33 @@ describe("API tests that add new users", () => {
       expect(response.body.createdAt).not.be.null
 
     })
-    
+
   })
 
-  //teste de contrato
+  it('Teste 4 - Teste de contrato', () => {
+    cy.request({
+      method: 'POST',
+      url: '/users',
+      body: {
+        "name": "Rhaynner",
+        "job": "Manager"
+      }
+    }).then((response) => {
+     
+      cy.fixture('userSchema').then((schema) => {
+        const validate = ajv.compile(schema)
+
+        const valid = validate(response.body)
+
+        if (!valid) cy.log(validate.errors).then(()=>{
+          throw new Error ('Falha no contrato')
+
+        })
+
+      })
+
+    })
+
+  })
 
 })
