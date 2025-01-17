@@ -5,10 +5,11 @@ const cep = ["74843170", "01001000"];
 describe("Teste Automatizados da API consultar CEP", () => {
   cep.forEach((cep) => {
     it(`Consulta um cep valido CEP - ${cep}`, () => {
-      cy.request({
+      cy.api({
+        //cy.request({
         method: "GET",
         url: `${APIC_CEP}/${cep}/json/`,
-        failOnStatusCode: true,
+        //failOnStatusCode: false,
       }).then((resp) => {
         if (resp.status !== 200) {
           cy.log(`Erro ao buscar o CEP ${cep}: Status ${resp.status}`);
@@ -28,6 +29,23 @@ describe("Teste Automatizados da API consultar CEP", () => {
           expect(resp.body.uf).not.to.be.null;
         }
       });
+    });
+  });
+
+  it("Valida os headers da api que busca o cep", () => {
+    cy.api({
+      method: "GET",
+      url: `${APIC_CEP}/01001000/json/`,
+    }).then((resp) => {
+      if (resp.status !== 200) {
+        cy.log(`Erro ao buscar o CEP 74843170: Status ${resp.status}`);
+      } else {
+        expect(resp.status).to.equal(200);
+        expect(resp.headers).to.have.property(
+          "content-type",
+          "application/json; charset=utf-8"
+        );
+      }
     });
   });
 });
