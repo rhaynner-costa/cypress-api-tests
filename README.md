@@ -2,15 +2,17 @@
 
 Portfólio de testes e2e com o Cypress
 
-# Requisitos
+## Requisitos
 
-Node.js instalado
+- Node.js instalado
 
-# Dependencias
+## Dependências
 
-Na raiz do projeto rodar o comando:
+Na raiz do projeto, rodar o comando:
 
-    npm install
+```sh
+npm install
+```
 
 # Executar os testes
 
